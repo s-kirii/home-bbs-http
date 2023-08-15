@@ -22,11 +22,12 @@ class TCPServer6(TCPServer):
 
 class HTTPServersHandle():
     def __init__(self, auto= True, ipv6=False, port=8000):
-        self.protcol = IPv6Address if ipv6 else IPv4Address
-        self.server = TCPServer6 if ipv6 else TCPServer
+        self.ipv6 = ipv6
+        self.protcol = IPv6Address if self.ipv6 else IPv4Address
+        self.server = TCPServer6 if self.ipv6 else TCPServer
         self.Handler = SimpleHTTPRequestHandler
 
-        self.ipconfig = "./config_ipv6" if ipv6 else "./config_ipv4"
+        self.ipconfig = "./config_ipv6" if self.ipv6 else "./config_ipv4"
         if auto:
             try:
                 with open(self.ipconfig, "r") as f:
@@ -46,7 +47,7 @@ class HTTPServersHandle():
     def start_server(self):
         with self.server(self.addr, self.Handler) as httpd:
             try:
-                if ipv6:
+                if self.ipv6:
                     logger.info("server is listening at http://[%s]:%s"%(self.addr[0], self.addr[1]))
                 else:
                     logger.info("server is listening at http://%s:%s"%(self.addr[0], self.addr[1]))
