@@ -1,23 +1,27 @@
-{% extends "layout.html" %}
-{% block content %}
-    <h1>掲示板</h1>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
 
-    <form action="/thread" method="post">
-        <label for="thread">新しいスレッドを立てる</label>
-        <input type="text" name="thread">
-        <!-- <textarea name="article" rows="6" cols="100"></textarea>
-        <p></p>
-        <label for="name">名前</label>
-        <input type="text" name="name"> -->
-        <button type="submit">作る</button>
-    </form>
+<html>
+  <head>
+    <title>自己紹介</title>
+    <script type="text/javascript" async 
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
-    <h2>スレッド一覧</h2>
-    {% for thread in threads: %}
-        <form action="/thread" method="post">
-            <input type="hidden" name="thread" value="{{ thread.threadname }}">
-            <button type="submit">{{ thread.threadname }}</button>
-        </form>
-    {% endfor %}
-
-{% endblock %}
+  </head>
+  <body>
+    <h1>自己紹介</h1>
+      <h2>名前</h2>
+        <p>私の名前はきなこです。</p>
+      <h2>好きな食べ物</h2>
+         <p>焼きそば</p>
+      <h2>好きな数式</h2>
+        \begin{align}
+          F(\omega) &= \cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f(t)e^{i\omega t}dt\\
+          \partial _{\mu} F^{\mu \nu} &= \mu _{0}j^{\nu}\\
+          R_{\mu\nu} \frac{1}{2}g_{\mu\nu}R +\Lambda g_{\mu\nu} &= \frac{8\pi G}{c^{4}} T_{\mu\nu}
+        \end{align}
+      <h2>好きなYouTube</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZPgyWXVbTOI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </body>
+</html>
